@@ -2,84 +2,446 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>宝宝辅食计划（7个月→8个月）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>宝宝辅食计划</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
-        h1 { color: #2c3e50; text-align: center; }
-        h2 { color: #34495e; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .status { background: #e8f5e9; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
-        .status span { font-weight: bold; color: #2e7d32; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background: #3498db; color: white; }
-        tr:nth-child(even) { background: #f9f9f9; }
-        .timeline { display: flex; justify-content: space-between; margin: 20px 0; }
-        .timeline-item { flex: 1; text-align: center; padding: 15px; background: #fff3e0; margin: 0 5px; border-radius: 8px; }
-        .timeline-item h3 { margin: 0 0 10px 0; color: #e65100; }
-        .food-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .food-item { background: #f5f5f5; padding: 10px; border-radius: 6px; }
-        .food-item strong { color: #1565c0; }
-        .note { background: #fff8e1; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header h1 { 
+            font-size: 24px; 
+            color: #333;
+        }
+        .header .date {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .status-bar {
+            background: #fff;
+            margin: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .status-bar p {
+            color: #666;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .tabs {
+            display: flex;
+            background: white;
+            margin: 0 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            font-weight: bold;
+        }
+        .content {
+            padding: 15px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+        }
+        .meal-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .meal-item:last-child { border-bottom: none; }
+        .meal-time {
+            font-size: 14px;
+            color: #667eea;
+            font-weight: bold;
+            min-width: 70px;
+        }
+        .meal-info { flex: 1; }
+        .meal-name {
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+        .meal-food {
+            font-size: 13px;
+            color: #888;
+            margin-top: 3px;
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        .timeline-item {
+            flex: 1;
+            min-width: 70px;
+            text-align: center;
+            padding: 10px 8px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 10px;
+        }
+        .timeline-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .timeline-item h4 {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        .timeline-item p {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+        .food-tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: #666;
+            margin: 2px;
+        }
+        .food-tag.fish { background: #e3f2fd; color: #1976d2; }
+        .food-tag.meat { background: #ffebee; color: #c62828; }
+        .food-tag.veg { background: #e8f5e9; color: #388e3c; }
+        .food-tag.fruit { background: #fff3e0; color: #f57c00; }
+        .food-tag.oil { background: #fff8e1; color: #f9a825; }
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .food-card {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .food-card strong {
+            display: block;
+            color: #333;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        .food-card span {
+            font-size: 11px;
+            color: #888;
+        }
+        .note {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+        }
+        .note p {
+            font-size: 13px;
+            color: #666;
+            margin: 5px 0;
+        }
+        .nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            padding: 10px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            cursor: pointer;
+        }
+        .nav-item.active {
+            color: #667eea;
+        }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-    <h1>👶 宝宝辅食计划</h1>
-    <div class="status">
-        <p>📅 起始日期：2026年3月10日</p>
-        <p>⚖️ 当前体重：8公斤</p>
-        <p>📊 当前月龄：7个月（3月28日满8个月）</p>
-        <p>🍚 当前形态：泥状→粗泥</p>
+    <div class="header">
+        <h1>👶 宝宝辅食计划</h1>
+        <p class="date">7个月 → 8个月</p>
     </div>
-    <div class="card">
-        <h2>📈 进阶节奏</h2>
-        <div class="timeline">
-            <div class="timeline-item"><h3>第1周</h3><p>3/10-3/16</p><p>粗泥状</p><p>+西梅通便</p></div>
-            <div class="timeline-item"><h3>第2周</h3><p>3/17-3/23</p><p>烂粥/面条</p><p>锻炼咀嚼</p></div>
-            <div class="timeline-item"><h3>第3周</h3><p>3/24-3/28</p><p>+手指食物</p><p>锻炼抓握</p></div>
-            <div class="timeline-item"><h3>满8个月</h3><p>3/28后</p><p>+蛋黄</p><p>补铁补钙</p></div>
+
+    <div class="status-bar">
+        <p>📅 今日：3月10日 周二</p>
+        <p>⚖️ 体重：8公斤</p>
+        <p>🍚 形态：粗泥状</p>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('today')">今日安排</div>
+        <div class="tab" onclick="switchTab('week')">每周轮换</div>
+        <div class="tab" onclick="switchTab('guide')">进阶指南</div>
+        <div class="tab" onclick="switchTab('foods')">食材库</div>
+    </div>
+
+    <div class="content">
+        <!-- 今日安排 -->
+        <div id="today" class="tab-content">
+            <div class="card">
+                <h2>📈 进阶进度</h2>
+                <div class="timeline">
+                    <div class="timeline-item active">
+                        <h4>第1周</h4>
+                        <p>粗泥状</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>第2周</h4>
+                        <p>烂粥/面</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>第3周</h4>
+                        <p>手指食</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>满8月</h4>
+                        <p>+蛋黄</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🍚 今日安排</h2>
+                <div class="meal-item">
+                    <span class="meal-time">10:00</span>
+                    <div class="meal-info">
+                        <div class="meal-name">🍚 午餐</div>
+                        <div class="meal-food">三文鱼+菠菜+南瓜+燕麦粉+核桃油</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">14:00</span>
+                    <div class="meal-info">
+                        <div class="meal-name">🍎 水果</div>
+                        <div class="meal-food">西梅泥 / 苹果泥 / 蓝莓</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">15:30</span>
+                    <div class="meal-info">
+                        <div class="meal-name">🍚 晚餐</div>
+                        <div class="meal-food">猪肉+红薯+燕麦粉+亚麻籽油</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note">
+                <p><strong>💡 小贴士</strong></p>
+                <p>• 不额外加水，蒸出来的水分就够了</p>
+                <p>• 西梅第一次少量，观察通便效果</p>
+                <p>• 每天加辅食油5ml</p>
+            </div>
+        </div>
+
+        <!-- 每周轮换 -->
+        <div id="week" class="tab-content hidden">
+            <div class="card">
+                <h2>📅 每周轮换</h2>
+                <div class="meal-item">
+                    <span class="meal-time">周一</span>
+                    <div class="meal-info">
+                        <div class="meal-food">午餐: 三文鱼+菠菜+南瓜</div>
+                        <div class="meal-food">水果: 苹果泥</div>
+                        <div class="meal-food">晚餐: 猪肉+红薯</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">周二</span>
+                    <div class="meal-info">
+                        <div class="meal-food">午餐: 牛肉+胡萝卜+南瓜</div>
+                        <div class="meal-food">水果: 蓝莓</div>
+                        <div class="meal-food">晚餐: 猪肝+菠菜+粥</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">周三</span>
+                    <div class="meal-info">
+                        <div class="meal-food">午餐: 鸡肉+红薯+青菜</div>
+                        <div class="meal-food">水果: 梨泥</div>
+                        <div class="meal-food">晚餐: 三文鱼+南瓜</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">周四</span>
+                    <div class="meal-info">
+                        <div class="meal-food">午餐: 猪肉+菠菜+粥</div>
+                        <div class="meal-food">水果: 西梅</div>
+                        <div class="meal-food">晚餐: 牛肉+胡萝卜</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">周五</span>
+                    <div class="meal-info">
+                        <div class="meal-food">午餐: 猪肝+红薯+南瓜</div>
+                        <div class="meal-food">水果: 苹果泥</div>
+                        <div class="meal-food">晚餐: 鸡肉+青菜</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">周六</span>
+                    <div class="meal-info">
+                        <div class="meal-food">午餐: 三文鱼+胡萝卜</div>
+                        <div class="meal-food">水果: 蓝莓</div>
+                        <div class="meal-food">晚餐: 猪肉+菠菜</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">周日</span>
+                    <div class="meal-info">
+                        <div class="meal-food">午餐: 牛肉+红薯</div>
+                        <div class="meal-food">水果: 梨泥</div>
+                        <div class="meal-food">晚餐: 猪肝+粥</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 进阶指南 -->
+        <div id="guide" class="tab-content hidden">
+            <div class="card">
+                <h2>📈 进阶时间表</h2>
+                <div class="meal-item">
+                    <span class="meal-time">第1周<br>3/10-16</span>
+                    <div class="meal-info">
+                        <div class="meal-name">粗泥状 + 燕麦粉减量</div>
+                        <div class="meal-food">+西梅通便</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">第2周<br>3/17-23</span>
+                    <div class="meal-info">
+                        <div class="meal-name">烂粥/烂面条</div>
+                        <div class="meal-food">锻炼咀嚼</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">第3周<br>3/24-28</span>
+                    <div class="meal-info">
+                        <div class="meal-name">+手指食物</div>
+                        <div class="meal-food">蒸软胡萝卜条/红薯条</div>
+                    </div>
+                </div>
+                <div class="meal-item">
+                    <span class="meal-time">满8月<br>3/28后</span>
+                    <div class="meal-info">
+                        <div class="meal-name">+蛋黄</div>
+                        <div class="meal-food">补铁补钙</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>💩 便秘对策</h2>
+                <p style="color:#666;font-size:14px;margin:10px 0;">• 多吃叶菜（菠菜、青菜）</p>
+                <p style="color:#666;font-size:14px;margin:10px 0;">• 每天加辅食油5ml</p>
+                <p style="color:#666;font-size:14px;margin:10px 0;">• 西梅/梨通便</p>
+                <p style="color:#666;font-size:14px;margin:10px 0;">• 多喝水</p>
+            </div>
+
+            <div class="note">
+                <p><strong>📌 注意事项</strong></p>
+                <p>• 不额外加水</p>
+                <p>• 太稠可加母乳调稀</p>
+                <p>• 新食材每次只加一种，观察3天</p>
+            </div>
+        </div>
+
+        <!-- 食材库 -->
+        <div id="foods" class="tab-content hidden">
+            <div class="card">
+                <h2>🐟 肉类/鱼类</h2>
+                <div class="food-tag fish">三文鱼</div>
+                <div class="food-tag fish">鳕鱼</div>
+                <div class="food-tag fish">鲈鱼</div>
+                <div class="food-tag meat">猪肉</div>
+                <div class="food-tag meat">牛肉</div>
+                <div class="food-tag meat">鸡肉</div>
+                <div class="food-tag meat">猪肝</div>
+            </div>
+
+            <div class="card">
+                <h2>🥬 蔬菜</h2>
+                <div class="food-tag veg">菠菜</div>
+                <div class="food-tag veg">南瓜</div>
+                <div class="food-tag veg">红薯</div>
+                <div class="food-tag veg">胡萝卜</div>
+                <div class="food-tag veg">青菜</div>
+                <div class="food-tag veg">小白菜</div>
+            </div>
+
+            <div class="card">
+                <h2>🍎 水果</h2>
+                <div class="food-tag fruit">苹果</div>
+                <div class="food-tag fruit">蓝莓</div>
+                <div class="food-tag fruit">梨</div>
+                <div class="food-tag fruit">西梅</div>
+                <div class="food-tag fruit">香蕉</div>
+                <div class="food-tag fruit">牛油果</div>
+            </div>
+
+            <div class="card">
+                <h2>🫙 油脂</h2>
+                <div class="food-tag oil">核桃油</div>
+                <div class="food-tag oil">亚麻籽油</div>
+                <div class="food-tag oil">牛油果油</div>
+            </div>
         </div>
     </div>
-    <div class="card">
-        <h2>📅 今日安排（3月10日）</h2>
-        <table>
-            <tr><th>时间</th><th>内容</th><th>食材</th></tr>
-            <tr><td>10:00</td><td>🍚 正餐</td><td>三文鱼+菠菜+南瓜+燕麦粉+核桃油</td></tr>
-            <tr><td>14:00</td><td>🍎 水果</td><td>西梅泥（或苹果/蓝莓）</td></tr>
-            <tr><td>15:30</td><td>🍚 正餐</td><td>猪肉+红薯+燕麦粉+亚麻籽油</td></tr>
-        </table>
-    </div>
-    <div class="card">
-        <h2>🍽️ 每周轮换</h2>
-        <table>
-            <tr><th></th><th>午餐</th><th>水果</th><th>晚餐</th></tr>
-            <tr><td><strong>周一</strong></td><td>三文鱼+菠菜+南瓜</td><td>苹果泥</td><td>猪肉+红薯</td></tr>
-            <tr><td><strong>周二</strong></td><td>牛肉+胡萝卜+南瓜</td><td>蓝莓</td><td>猪肝+菠菜+粥</td></tr>
-            <tr><td><strong>周三</strong></td><td>鸡肉+红薯+青菜</td><td>梨泥</td><td>三文鱼+南瓜</td></tr>
-            <tr><td><strong>周四</strong></td><td>猪肉+菠菜+粥</td><td>西梅</td><td>牛肉+胡萝卜</td></tr>
-            <tr><td><strong>周五</strong></td><td>猪肝+红薯+南瓜</td><td>苹果泥</td><td>鸡肉+青菜</td></tr>
-            <tr><td><strong>周六</strong></td><td>三文鱼+胡萝卜</td><td>蓝莓</td><td>猪肉+菠菜</td></tr>
-            <tr><td><strong>周日</strong></td><td>牛肉+红薯</td><td>梨泥</td><td>猪肝+粥</td></tr>
-        </table>
-    </div>
-    <div class="card">
-        <h2>💩 便秘对策</h2>
-        <ul>
-            <li>多吃叶菜（菠菜、青菜）</li>
-            <li>每天加辅食油5ml</li>
-            <li>西梅/梨通便</li>
-            <li>多喝水</li>
-        </ul>
-    </div>
-    <div class="note">
-        <strong>📌 注意事项</strong>
-        <ul>
-            <li>不用额外加水，蒸出来的水分就够了</li>
-            <li>太稠可以加一点母乳调稀</li>
-            <li>新食材每次只加一种，观察3天</li>
-            <li>燕麦粉逐步减少</li>
-        </ul>
-    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
