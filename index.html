@@ -146,27 +146,6 @@
         .food-tag.veg { background: #e8f5e9; color: #388e3c; }
         .food-tag.fruit { background: #fff3e0; color: #f57c00; }
         .food-tag.oil { background: #fff8e1; color: #f9a825; }
-        .food-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-        .food-card {
-            background: #f9f9f9;
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .food-card strong {
-            display: block;
-            color: #333;
-            font-size: 13px;
-            margin-bottom: 5px;
-        }
-        .food-card span {
-            font-size: 11px;
-            color: #888;
-        }
         .note {
             background: #fff8e1;
             border-left: 4px solid #ffc107;
@@ -209,7 +188,7 @@
     </div>
 
     <div class="status-bar">
-        <p>📅 今日：3月10日 周二</p>
+        <p>📅 今日：3月11日 周三</p>
         <p>⚖️ 体重：8公斤</p>
         <p>🍚 形态：粗泥状</p>
     </div>
@@ -218,7 +197,6 @@
         <div class="tab active" onclick="switchTab('today')">今日安排</div>
         <div class="tab" onclick="switchTab('week')">每周轮换</div>
         <div class="tab" onclick="switchTab('guide')">进阶指南</div>
-        <div class="tab" onclick="switchTab('foods')">食材库</div>
     </div>
 
     <div class="content">
@@ -247,34 +225,34 @@
             </div>
 
             <div class="card">
-                <h2>🍚 今日安排</h2>
+                <h2>🍚 今日安排（3月11日 周三）</h2>
                 <div class="meal-item">
                     <span class="meal-time">10:00</span>
                     <div class="meal-info">
                         <div class="meal-name">🍚 午餐</div>
-                        <div class="meal-food">三文鱼+菠菜+南瓜+燕麦粉+核桃油</div>
+                        <div class="meal-food">牛肉+胡萝卜+南瓜+燕麦粉+核桃油</div>
                     </div>
                 </div>
                 <div class="meal-item">
                     <span class="meal-time">14:00</span>
                     <div class="meal-info">
                         <div class="meal-name">🍎 水果</div>
-                        <div class="meal-food">西梅泥 / 苹果泥 / 蓝莓</div>
+                        <div class="meal-food">蓝莓</div>
                     </div>
                 </div>
                 <div class="meal-item">
                     <span class="meal-time">15:30</span>
                     <div class="meal-info">
                         <div class="meal-name">🍚 晚餐</div>
-                        <div class="meal-food">猪肉+红薯+燕麦粉+亚麻籽油</div>
+                        <div class="meal-food">猪肝+菠菜+粥+亚麻籽油</div>
                     </div>
                 </div>
             </div>
 
             <div class="note">
                 <p><strong>💡 小贴士</strong></p>
-                <p>• 不额外加水，蒸出来的水分就够了</p>
-                <p>• 西梅第一次少量，观察通便效果</p>
+                <p>• 燕麦粉可继续减少（今天1勺即可）</p>
+                <p>• 猪肝富含铁，一周1-2次即可</p>
                 <p>• 每天加辅食油5ml</p>
             </div>
         </div>
@@ -350,28 +328,24 @@
                     <span class="meal-time">第1周<br>3/10-16</span>
                     <div class="meal-info">
                         <div class="meal-name">粗泥状 + 燕麦粉减量</div>
-                        <div class="meal-food">+西梅通便</div>
                     </div>
                 </div>
                 <div class="meal-item">
                     <span class="meal-time">第2周<br>3/17-23</span>
                     <div class="meal-info">
                         <div class="meal-name">烂粥/烂面条</div>
-                        <div class="meal-food">锻炼咀嚼</div>
                     </div>
                 </div>
                 <div class="meal-item">
                     <span class="meal-time">第3周<br>3/24-28</span>
                     <div class="meal-info">
                         <div class="meal-name">+手指食物</div>
-                        <div class="meal-food">蒸软胡萝卜条/红薯条</div>
                     </div>
                 </div>
                 <div class="meal-item">
                     <span class="meal-time">满8月<br>3/28后</span>
                     <div class="meal-info">
                         <div class="meal-name">+蛋黄</div>
-                        <div class="meal-food">补铁补钙</div>
                     </div>
                 </div>
             </div>
@@ -383,54 +357,6 @@
                 <p style="color:#666;font-size:14px;margin:10px 0;">• 西梅/梨通便</p>
                 <p style="color:#666;font-size:14px;margin:10px 0;">• 多喝水</p>
             </div>
-
-            <div class="note">
-                <p><strong>📌 注意事项</strong></p>
-                <p>• 不额外加水</p>
-                <p>• 太稠可加母乳调稀</p>
-                <p>• 新食材每次只加一种，观察3天</p>
-            </div>
-        </div>
-
-        <!-- 食材库 -->
-        <div id="foods" class="tab-content hidden">
-            <div class="card">
-                <h2>🐟 肉类/鱼类</h2>
-                <div class="food-tag fish">三文鱼</div>
-                <div class="food-tag fish">鳕鱼</div>
-                <div class="food-tag fish">鲈鱼</div>
-                <div class="food-tag meat">猪肉</div>
-                <div class="food-tag meat">牛肉</div>
-                <div class="food-tag meat">鸡肉</div>
-                <div class="food-tag meat">猪肝</div>
-            </div>
-
-            <div class="card">
-                <h2>🥬 蔬菜</h2>
-                <div class="food-tag veg">菠菜</div>
-                <div class="food-tag veg">南瓜</div>
-                <div class="food-tag veg">红薯</div>
-                <div class="food-tag veg">胡萝卜</div>
-                <div class="food-tag veg">青菜</div>
-                <div class="food-tag veg">小白菜</div>
-            </div>
-
-            <div class="card">
-                <h2>🍎 水果</h2>
-                <div class="food-tag fruit">苹果</div>
-                <div class="food-tag fruit">蓝莓</div>
-                <div class="food-tag fruit">梨</div>
-                <div class="food-tag fruit">西梅</div>
-                <div class="food-tag fruit">香蕉</div>
-                <div class="food-tag fruit">牛油果</div>
-            </div>
-
-            <div class="card">
-                <h2>🫙 油脂</h2>
-                <div class="food-tag oil">核桃油</div>
-                <div class="food-tag oil">亚麻籽油</div>
-                <div class="food-tag oil">牛油果油</div>
-            </div>
         </div>
     </div>
 
@@ -438,7 +364,6 @@
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-            
             document.getElementById(tabId).classList.remove('hidden');
             event.target.classList.add('active');
         }
