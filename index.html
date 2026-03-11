@@ -6,178 +6,37 @@
     <title>宝宝辅食计划</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding-bottom: 80px;
-        }
-        .header {
-            background: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .header h1 { 
-            font-size: 24px; 
-            color: #333;
-        }
-        .header .date {
-            color: #888;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        .status-bar {
-            background: #fff;
-            margin: 15px;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .status-bar p {
-            color: #666;
-            font-size: 14px;
-            margin: 5px 0;
-        }
-        .tabs {
-            display: flex;
-            background: white;
-            margin: 0 15px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .tab {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            font-size: 14px;
-            color: #666;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-        }
-        .tab.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-            font-weight: bold;
-        }
-        .content {
-            padding: 15px;
-        }
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .card h2 {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #667eea;
-        }
-        .meal-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding-bottom: 80px; }
+        .header { background: white; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header h1 { font-size: 24px; color: #333; }
+        .header .date { color: #888; font-size: 14px; margin-top: 5px; }
+        .status-bar { background: #fff; margin: 15px; padding: 15px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .status-bar p { color: #666; font-size: 14px; margin: 5px 0; }
+        .tabs { display: flex; background: white; margin: 0 15px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .tab { flex: 1; padding: 15px; text-align: center; font-size: 14px; color: #666; cursor: pointer; border-bottom: 3px solid transparent; }
+        .tab.active { color: #667eea; border-bottom-color: #667eea; font-weight: bold; }
+        .content { padding: 15px; }
+        .card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .card h2 { font-size: 16px; color: #333; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #667eea; }
+        .meal-item { display: flex; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
         .meal-item:last-child { border-bottom: none; }
-        .meal-time {
-            font-size: 14px;
-            color: #667eea;
-            font-weight: bold;
-            min-width: 70px;
-        }
+        .meal-time { font-size: 14px; color: #667eea; font-weight: bold; min-width: 70px; }
         .meal-info { flex: 1; }
-        .meal-name {
-            font-size: 15px;
-            color: #333;
-            font-weight: 500;
-        }
-        .meal-food {
-            font-size: 13px;
-            color: #888;
-            margin-top: 3px;
-        }
-        .timeline {
-            display: flex;
-            justify-content: space-between;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 10px 0;
-        }
-        .timeline-item {
-            flex: 1;
-            min-width: 70px;
-            text-align: center;
-            padding: 10px 8px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
-            border-radius: 10px;
-        }
-        .timeline-item.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .timeline-item h4 {
-            font-size: 12px;
-            margin-bottom: 5px;
-        }
-        .timeline-item p {
-            font-size: 11px;
-            opacity: 0.8;
-        }
-        .food-tag {
-            display: inline-block;
-            background: #f0f0f0;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            color: #666;
-            margin: 2px;
-        }
-        .food-tag.fish { background: #e3f2fd; color: #1976d2; }
-        .food-tag.meat { background: #ffebee; color: #c62828; }
-        .food-tag.veg { background: #e8f5e9; color: #388e3c; }
-        .food-tag.fruit { background: #fff3e0; color: #f57c00; }
-        .food-tag.oil { background: #fff8e1; color: #f9a825; }
-        .note {
-            background: #fff8e1;
-            border-left: 4px solid #ffc107;
-            padding: 12px;
-            border-radius: 0 8px 8px 0;
-            margin-top: 15px;
-        }
-        .note p {
-            font-size: 13px;
-            color: #666;
-            margin: 5px 0;
-        }
-        .nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            display: flex;
-            padding: 10px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-        }
-        .nav-item {
-            flex: 1;
-            text-align: center;
-            font-size: 12px;
-            color: #999;
-            cursor: pointer;
-        }
-        .nav-item.active {
-            color: #667eea;
-        }
+        .meal-name { font-size: 15px; color: #333; font-weight: 500; }
+        .meal-food { font-size: 13px; color: #888; margin-top: 3px; }
+        .recipe { background: #f8f9fa; border-radius: 8px; padding: 12px; margin-top: 10px; }
+        .recipe h4 { color: #333; font-size: 14px; margin-bottom: 8px; }
+        .recipe p { color: #666; font-size: 13px; line-height: 1.6; margin: 5px 0; }
+        .recipe .step { display: flex; margin: 5px 0; }
+        .recipe .step-num { background: #667eea; color: white; width: 20px; height: 20px; border-radius: 50%; text-align: center; line-height: 20px; font-size: 12px; margin-right: 8px; flex-shrink: 0; }
+        .recipe .step-text { flex: 1; font-size: 13px; color: #666; }
+        .timeline { display: flex; justify-content: space-between; gap: 8px; overflow-x: auto; padding: 10px 0; }
+        .timeline-item { flex: 1; min-width: 70px; text-align: center; padding: 10px 8px; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); border-radius: 10px; }
+        .timeline-item.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .timeline-item h4 { font-size: 12px; margin-bottom: 5px; }
+        .timeline-item p { font-size: 11px; opacity: 0.8; }
+        .note { background: #fff8e1; border-left: 4px solid #ffc107; padding: 12px; border-radius: 0 8px 8px 0; margin-top: 15px; }
+        .note p { font-size: 13px; color: #666; margin: 5px 0; }
         .hidden { display: none; }
     </style>
 </head>
@@ -205,55 +64,70 @@
             <div class="card">
                 <h2>📈 进阶进度</h2>
                 <div class="timeline">
-                    <div class="timeline-item active">
-                        <h4>第1周</h4>
-                        <p>粗泥状</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>第2周</h4>
-                        <p>烂粥/面</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>第3周</h4>
-                        <p>手指食</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>满8月</h4>
-                        <p>+蛋黄</p>
-                    </div>
+                    <div class="timeline-item active"><h4>第1周</h4><p>粗泥状</p></div>
+                    <div class="timeline-item"><h4>第2周</h4><p>烂粥/面</p></div>
+                    <div class="timeline-item"><h4>第3周</h4><p>手指食</p></div>
+                    <div class="timeline-item"><h4>满8月</h4><p>+蛋黄</p></div>
                 </div>
             </div>
 
             <div class="card">
                 <h2>🍚 今日安排（3月11日 周三）</h2>
+                
                 <div class="meal-item">
-                    <span class="meal-time">10:00</span>
+                    <span class="meal-time">10:00<br>午餐</span>
                     <div class="meal-info">
-                        <div class="meal-name">🍚 午餐</div>
-                        <div class="meal-food">牛肉+胡萝卜+南瓜+燕麦粉+核桃油</div>
+                        <div class="meal-name">🍚 牛肉+胡萝卜+南瓜+燕麦粉+核桃油</div>
+                        <div class="recipe">
+                            <h4>做法：</h4>
+                            <p>1. 牛肉30g剁碎，蒸15分钟</p>
+                            <p>2. 胡萝卜20g去皮切块，蒸15分钟</p>
+                            <p>3. 南瓜50g去皮切块，蒸15分钟</p>
+                            <p>4. 所有食材打碎成粗泥</p>
+                            <p>5. 加1勺燕麦粉 + 5ml核桃油拌匀</p>
+                        </div>
                     </div>
                 </div>
+
                 <div class="meal-item">
-                    <span class="meal-time">14:00</span>
+                    <span class="meal-time">14:00<br>水果</span>
                     <div class="meal-info">
-                        <div class="meal-name">🍎 水果</div>
-                        <div class="meal-food">蓝莓</div>
+                        <div class="meal-name">🍎 蓝莓</div>
+                        <div class="recipe">
+                            <h4>做法：</h4>
+                            <p>蓝莓洗净，直接压碎或打成果泥</p>
+                            <p>量：2-3勺</p>
+                        </div>
                     </div>
                 </div>
+
                 <div class="meal-item">
-                    <span class="meal-time">15:30</span>
+                    <span class="meal-time">15:30<br>晚餐</span>
                     <div class="meal-info">
-                        <div class="meal-name">🍚 晚餐</div>
-                        <div class="meal-food">猪肝+菠菜+粥+亚麻籽油</div>
+                        <div class="meal-name">🍚 猪肝+菠菜+粥+亚麻籽油</div>
+                        <div class="recipe">
+                            <h4>做法：</h4>
+                            <p><strong>粥的做法：</strong></p>
+                            <p>1. 东北大米洗净，水和米比例8:1</p>
+                            <p>2. 电饭锅煮粥模式或小火煮40分钟</p>
+                            <p>3. 煮好的粥打碎成小颗粒</p>
+                            <p><strong>猪肝菠菜：</strong></p>
+                            <p>4. 猪肝30g洗净，去筋膜，切小块</p>
+                            <p>5. 猪肝泡清水30分钟去血水，蒸15分钟</p>
+                            <p>6. 菠菜20g焯水1分钟去草酸</p>
+                            <p>7. 猪肝+菠菜+粥打碎成粗泥</p>
+                            <p>8. 加5ml亚麻籽油拌匀</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="note">
                 <p><strong>💡 小贴士</strong></p>
-                <p>• 燕麦粉可继续减少（今天1勺即可）</p>
+                <p>• 燕麦粉今天1勺即可，逐步减少</p>
                 <p>• 猪肝富含铁，一周1-2次即可</p>
                 <p>• 每天加辅食油5ml</p>
+                <p>• 不用额外加水，蒸出来的水分就够了</p>
             </div>
         </div>
 
@@ -326,27 +200,19 @@
                 <h2>📈 进阶时间表</h2>
                 <div class="meal-item">
                     <span class="meal-time">第1周<br>3/10-16</span>
-                    <div class="meal-info">
-                        <div class="meal-name">粗泥状 + 燕麦粉减量</div>
-                    </div>
+                    <div class="meal-info"><div class="meal-name">粗泥状 + 燕麦粉减量</div></div>
                 </div>
                 <div class="meal-item">
                     <span class="meal-time">第2周<br>3/17-23</span>
-                    <div class="meal-info">
-                        <div class="meal-name">烂粥/烂面条</div>
-                    </div>
+                    <div class="meal-info"><div class="meal-name">烂粥/烂面条</div></div>
                 </div>
                 <div class="meal-item">
                     <span class="meal-time">第3周<br>3/24-28</span>
-                    <div class="meal-info">
-                        <div class="meal-name">+手指食物</div>
-                    </div>
+                    <div class="meal-info"><div class="meal-name">+手指食物</div></div>
                 </div>
                 <div class="meal-item">
                     <span class="meal-time">满8月<br>3/28后</span>
-                    <div class="meal-info">
-                        <div class="meal-name">+蛋黄</div>
-                    </div>
+                    <div class="meal-info"><div class="meal-name">+蛋黄</div></div>
                 </div>
             </div>
 
