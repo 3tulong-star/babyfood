@@ -27,9 +27,6 @@
         .recipe { background: #f8f9fa; border-radius: 8px; padding: 12px; margin-top: 10px; }
         .recipe h4 { color: #333; font-size: 14px; margin-bottom: 8px; }
         .recipe p { color: #666; font-size: 13px; line-height: 1.6; margin: 5px 0; }
-        .recipe .step { display: flex; margin: 5px 0; }
-        .recipe .step-num { background: #667eea; color: white; width: 20px; height: 20px; border-radius: 50%; text-align: center; line-height: 20px; font-size: 12px; margin-right: 8px; flex-shrink: 0; }
-        .recipe .step-text { flex: 1; font-size: 13px; color: #666; }
         .timeline { display: flex; justify-content: space-between; gap: 8px; overflow-x: auto; padding: 10px 0; }
         .timeline-item { flex: 1; min-width: 70px; text-align: center; padding: 10px 8px; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); border-radius: 10px; }
         .timeline-item.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
@@ -47,7 +44,7 @@
     </div>
 
     <div class="status-bar">
-        <p>📅 今日：3月11日 周三</p>
+        <p>📅 今日：3月14日 周六</p>
         <p>⚖️ 体重：8公斤</p>
         <p>🍚 形态：粗泥状</p>
     </div>
@@ -59,32 +56,31 @@
     </div>
 
     <div class="content">
-        <!-- 今日安排 -->
         <div id="today" class="tab-content">
             <div class="card">
                 <h2>📈 进阶进度</h2>
                 <div class="timeline">
-                    <div class="timeline-item active"><h4>第1周</h4><p>粗泥状</p></div>
+                    <div class="timeline-item"><h4>第1周</h4><p>粗泥状</p></div>
                     <div class="timeline-item"><h4>第2周</h4><p>烂粥/面</p></div>
-                    <div class="timeline-item"><h4>第3周</h4><p>手指食</p></div>
+                    <div class="timeline-item active"><h4>第3周</h4><p>手指食</p></div>
                     <div class="timeline-item"><h4>满8月</h4><p>+蛋黄</p></div>
                 </div>
             </div>
 
             <div class="card">
-                <h2>🍚 今日安排（3月11日 周三）</h2>
+                <h2>🍚 今日安排（3月14日 周六）</h2>
                 
                 <div class="meal-item">
                     <span class="meal-time">10:00<br>午餐</span>
                     <div class="meal-info">
-                        <div class="meal-name">🍚 牛肉+胡萝卜+南瓜+燕麦粉+核桃油</div>
+                        <div class="meal-name">🍚 三文鱼+胡萝卜+粥+核桃油</div>
                         <div class="recipe">
                             <h4>做法：</h4>
-                            <p>1. 牛肉30g剁碎，蒸15分钟</p>
-                            <p>2. 胡萝卜20g去皮切块，蒸15分钟</p>
-                            <p>3. 南瓜50g去皮切块，蒸15分钟</p>
+                            <p>1. 粥：大米洗净，水米比例8:1，煮40分钟</p>
+                            <p>2. 三文鱼30g蒸熟，去刺</p>
+                            <p>3. 胡萝卜20g蒸熟</p>
                             <p>4. 所有食材打碎成粗泥</p>
-                            <p>5. 加1勺燕麦粉 + 5ml核桃油拌匀</p>
+                            <p>5. 加5ml核桃油</p>
                         </div>
                     </div>
                 </div>
@@ -92,136 +88,59 @@
                 <div class="meal-item">
                     <span class="meal-time">14:00<br>水果</span>
                     <div class="meal-info">
-                        <div class="meal-name">🍎 蓝莓</div>
-                        <div class="recipe">
-                            <h4>做法：</h4>
-                            <p>蓝莓洗净，直接压碎或打成果泥</p>
-                            <p>量：2-3勺</p>
-                        </div>
+                        <div class="meal-name">🍎 苹果泥</div>
                     </div>
                 </div>
 
                 <div class="meal-item">
                     <span class="meal-time">15:30<br>晚餐</span>
                     <div class="meal-info">
-                        <div class="meal-name">🍚 猪肝+菠菜+粥+亚麻籽油</div>
+                        <div class="meal-name">🍚 猪肉+菠菜+粥+亚麻籽油</div>
                         <div class="recipe">
                             <h4>做法：</h4>
-                            <p><strong>粥的做法：</strong></p>
-                            <p>1. 东北大米洗净，水和米比例8:1</p>
-                            <p>2. 电饭锅煮粥模式或小火煮40分钟</p>
-                            <p>3. 煮好的粥打碎成小颗粒</p>
-                            <p><strong>猪肝菠菜：</strong></p>
-                            <p>4. 猪肝30g洗净，去筋膜，切小块</p>
-                            <p>5. 猪肝泡清水30分钟去血水，蒸15分钟</p>
-                            <p>6. 菠菜20g焯水1分钟去草酸</p>
-                            <p>7. 猪肝+菠菜+粥打碎成粗泥</p>
-                            <p>8. 加5ml亚麻籽油拌匀</p>
+                            <p>1. 粥煮好备用</p>
+                            <p>2. 猪肉30g蒸熟</p>
+                            <p>3. 菠菜20g焯水</p>
+                            <p>4. 打碎成粗泥</p>
+                            <p>5. 加5ml亚麻籽油</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="note">
-                <p><strong>💡 小贴士</strong></p>
-                <p>• 燕麦粉今天1勺即可，逐步减少</p>
-                <p>• 猪肝富含铁，一周1-2次即可</p>
-                <p>• 每天加辅食油5ml</p>
-                <p>• 不用额外加水，蒸出来的水分就够了</p>
+                <p><strong>💡 第3周重点：手指食物</strong></p>
+                <p>• 可以开始尝试蒸软的胡萝卜条、红薯条</p>
+                <p>• 锻炼宝宝抓握能力</p>
             </div>
         </div>
 
-        <!-- 每周轮换 -->
         <div id="week" class="tab-content hidden">
             <div class="card">
                 <h2>📅 每周轮换</h2>
-                <div class="meal-item">
-                    <span class="meal-time">周一</span>
-                    <div class="meal-info">
-                        <div class="meal-food">午餐: 三文鱼+菠菜+南瓜</div>
-                        <div class="meal-food">水果: 苹果泥</div>
-                        <div class="meal-food">晚餐: 猪肉+红薯</div>
-                    </div>
-                </div>
-                <div class="meal-item">
-                    <span class="meal-time">周二</span>
-                    <div class="meal-info">
-                        <div class="meal-food">午餐: 牛肉+胡萝卜+南瓜</div>
-                        <div class="meal-food">水果: 蓝莓</div>
-                        <div class="meal-food">晚餐: 猪肝+菠菜+粥</div>
-                    </div>
-                </div>
-                <div class="meal-item">
-                    <span class="meal-time">周三</span>
-                    <div class="meal-info">
-                        <div class="meal-food">午餐: 鸡肉+红薯+青菜</div>
-                        <div class="meal-food">水果: 梨泥</div>
-                        <div class="meal-food">晚餐: 三文鱼+南瓜</div>
-                    </div>
-                </div>
-                <div class="meal-item">
-                    <span class="meal-time">周四</span>
-                    <div class="meal-info">
-                        <div class="meal-food">午餐: 猪肉+菠菜+粥</div>
-                        <div class="meal-food">水果: 西梅</div>
-                        <div class="meal-food">晚餐: 牛肉+胡萝卜</div>
-                    </div>
-                </div>
-                <div class="meal-item">
-                    <span class="meal-time">周五</span>
-                    <div class="meal-info">
-                        <div class="meal-food">午餐: 猪肝+红薯+南瓜</div>
-                        <div class="meal-food">水果: 苹果泥</div>
-                        <div class="meal-food">晚餐: 鸡肉+青菜</div>
-                    </div>
-                </div>
-                <div class="meal-item">
-                    <span class="meal-time">周六</span>
-                    <div class="meal-info">
-                        <div class="meal-food">午餐: 三文鱼+胡萝卜</div>
-                        <div class="meal-food">水果: 蓝莓</div>
-                        <div class="meal-food">晚餐: 猪肉+菠菜</div>
-                    </div>
-                </div>
-                <div class="meal-item">
-                    <span class="meal-time">周日</span>
-                    <div class="meal-info">
-                        <div class="meal-food">午餐: 牛肉+红薯</div>
-                        <div class="meal-food">水果: 梨泥</div>
-                        <div class="meal-food">晚餐: 猪肝+粥</div>
-                    </div>
-                </div>
+                <div class="meal-item"><span class="meal-time">周一</span><div class="meal-info"><div class="meal-food">午餐: 三文鱼+菠菜+粥</div><div class="meal-food">水果: 苹果泥</div><div class="meal-food">晚餐: 猪肉+红薯</div></div></div>
+                <div class="meal-item"><span class="meal-time">周二</span><div class="meal-info"><div class="meal-food">午餐: 牛肉+胡萝卜+粥</div><div class="meal-food">水果: 蓝莓</div><div class="meal-food">晚餐: 猪肝+菠菜</div></div></div>
+                <div class="meal-item"><span class="meal-time">周三</span><div class="meal-info"><div class="meal-food">午餐: 鸡肉+红薯+粥</div><div class="meal-food">水果: 梨泥</div><div class="meal-food">晚餐: 三文鱼+胡萝卜</div></div></div>
+                <div class="meal-item"><span class="meal-time">周四</span><div class="meal-info"><div class="meal-food">午餐: 猪肉+菠菜+粥</div><div class="meal-food">水果: 西梅</div><div class="meal-food">晚餐: 牛肉+胡萝卜</div></div></div>
+                <div class="meal-item"><span class="meal-time">周五</span><div class="meal-info"><div class="meal-food">午餐: 猪肝+红薯+粥</div><div class="meal-food">水果: 苹果泥</div><div class="meal-food">晚餐: 鸡肉+青菜</div></div></div>
+                <div class="meal-item"><span class="meal-time">周六</span><div class="meal-info"><div class="meal-food">午餐: 三文鱼+胡萝卜+粥</div><div class="meal-food">水果: 蓝莓</div><div class="meal-food">晚餐: 猪肉+菠菜</div></div></div>
+                <div class="meal-item"><span class="meal-time">周日</span><div class="meal-info"><div class="meal-food">午餐: 牛肉+红薯+粥</div><div class="meal-food">水果: 梨泥</div><div class="meal-food">晚餐: 猪肝+粥</div></div></div>
             </div>
         </div>
 
-        <!-- 进阶指南 -->
         <div id="guide" class="tab-content hidden">
             <div class="card">
                 <h2>📈 进阶时间表</h2>
-                <div class="meal-item">
-                    <span class="meal-time">第1周<br>3/10-16</span>
-                    <div class="meal-info"><div class="meal-name">粗泥状 + 燕麦粉减量</div></div>
-                </div>
-                <div class="meal-item">
-                    <span class="meal-time">第2周<br>3/17-23</span>
-                    <div class="meal-info"><div class="meal-name">烂粥/烂面条</div></div>
-                </div>
-                <div class="meal-item">
-                    <span class="meal-time">第3周<br>3/24-28</span>
-                    <div class="meal-info"><div class="meal-name">+手指食物</div></div>
-                </div>
-                <div class="meal-item">
-                    <span class="meal-time">满8月<br>3/28后</span>
-                    <div class="meal-info"><div class="meal-name">+蛋黄</div></div>
-                </div>
+                <div class="meal-item"><span class="meal-time">第1周<br>3/10-16</span><div class="meal-info"><div class="meal-name">粗泥状 + 燕麦粉减量</div></div></div>
+                <div class="meal-item"><span class="meal-time">第2周<br>3/17-23</span><div class="meal-info"><div class="meal-name">烂粥/烂面条</div></div></div>
+                <div class="meal-item"><span class="meal-time">第3周<br>3/24-28</span><div class="meal-info"><div class="meal-name">+手指食物</div></div></div>
+                <div class="meal-item"><span class="meal-time">满8月<br>3/28后</span><div class="meal-info"><div class="meal-name">+蛋黄</div></div></div>
             </div>
-
             <div class="card">
                 <h2>💩 便秘对策</h2>
-                <p style="color:#666;font-size:14px;margin:10px 0;">• 多吃叶菜（菠菜、青菜）</p>
+                <p style="color:#666;font-size:14px;margin:10px 0;">• 多吃叶菜</p>
                 <p style="color:#666;font-size:14px;margin:10px 0;">• 每天加辅食油5ml</p>
                 <p style="color:#666;font-size:14px;margin:10px 0;">• 西梅/梨通便</p>
-                <p style="color:#666;font-size:14px;margin:10px 0;">• 多喝水</p>
             </div>
         </div>
     </div>
